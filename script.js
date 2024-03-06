@@ -45,27 +45,27 @@ for (let i = 0; i < 16; ++i) {
 	removeFromArray(c, faces);
 }
 
-let ce1 = null;
-let ce2 = null;
+let selected1 = null;
+let selected2 = null;
 let moves = 0;
 
 function handleClick(e) {
 	e.target.textContent = e.target.dataset.face;
-	if (ce1 && !ce2) ce2 = e.target;
-	if (!ce1) ce1 = e.target;
+	if (selected1 && !selected2) selected2 = e.target;
+	if (!selected1) selected1 = e.target;
 
-	if (ce1 && ce2) {
-		if (ce1.dataset.face == ce2.dataset.face) {
+	if (selected1 && selected2) {
+		if (selected1.dataset.face == selected2.dataset.face) {
 			console.log("mathced");
-			removeFromArray(ce1, cards);
-			removeFromArray(ce2, cards);
+			removeFromArray(selected1, cards);
+			removeFromArray(selected2, cards);
 		} else {
-			ce1.style.animationName = ce2.style.animationName = "shake";
+			selected1.style.animationName = selected2.style.animationName = "shake";
 			setTimeout(() => {
 				whiteAll();
 			}, 1000);
 		}
-		ce1 = ce2 = null;
+		selected1 = selected2 = null;
 		if (cards.length == 0)
 			Swal.fire({
 				title: "Yayy",
