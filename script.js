@@ -3,8 +3,12 @@ const grid = document.getElementById("grid");
 let cards = [];
 
 function genCard(t) {
+	let outer = document.createElement("div");
+	outer.classList.add("card-outer");
 	let card = document.createElement("div");
 	card.classList.add("card");
+	let inner = document.createElement("span");
+	inner.classList.add("card-inner");
 	card.dataset.face = t;
 	grid.appendChild(card);
 	cards.push(card);
@@ -22,7 +26,6 @@ let faces = shuffle([
 	"😴",
 	"😤",
 	"😒",
-	"☠️",
 	"🤣",
 	"😑",
 	"🫡",
@@ -33,7 +36,6 @@ let faces = shuffle([
 	"🥳",
 	"🤒",
 	"🤓",
-	"🤖",
 ]).slice(0, 8);
 faces = faces.concat(faces);
 
@@ -52,9 +54,6 @@ function handleClick(e) {
 	if (ce1 && !ce2) ce2 = e.target;
 	if (!ce1) ce1 = e.target;
 
-	// console.log("ce1", ce1);
-	// console.log("ce2", ce2);
-	// console.log("");
 	if (ce1 && ce2) {
 		if (ce1.dataset.face == ce2.dataset.face) {
 			console.log("mathced");
@@ -67,7 +66,7 @@ function handleClick(e) {
 			}, 1000);
 		}
 		ce1 = ce2 = null;
-		if (cards.length == 2)
+		if (cards.length == 0)
 			Swal.fire({
 				title: "Yayy",
 				text: "You've won!!",

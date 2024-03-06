@@ -1,7 +1,7 @@
 :root {
-    --orange: #ffd68a;
-    --bg: #2b2b37;
-    scroll-behavior: smooth;
+	--orange: #ffd68a;
+	--bg: #2b2b37;
+	scroll-behavior: smooth;
 }
 
 * {
@@ -19,17 +19,7 @@ body {
 	display: flex;
 }
 
-/* main {
-	height: 100%;
-	width: 100%;
-	padding: 1vh;
-	align-items: center;
-	justify-content: center;
-	display: flex;
-} */
-
 #grid {
-	/* height: 100%; */
 	max-width: 70%;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
@@ -37,17 +27,17 @@ body {
 }
 
 .card {
-	width: 100px;
-	height: 100px;
+	width: 2em;
+	height: 2em;
 	margin: 3vh;
 	font-size: 3em;
 	border-radius: 0.3em;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-    box-shadow: 3px 3px 0 0 #6b705c;
-    transition: box-shadow 0.3s, transform 0.6s;
-    border: 1px solid #d6ff9f;
+	box-shadow: 3px 3px 0 0 #6b705c;
+	transition: box-shadow 0.3s, transform 0.6s;
+	border: 1px solid #d6ff9f;
 	background: radial-gradient(circle, #fefae0 0%, #e9edc9 100%);
 	direction: rtl;
 	animation-duration: 0.4s;
@@ -55,8 +45,8 @@ body {
 }
 
 .card:hover {
-    box-shadow: 5px 6px 0 0 #6b705c;
-    transform: translate(-2px, -3px);
+	box-shadow: 5px 6px 0 0 #6b705c;
+	transform: translate(-2px, -3px);
 }
 
 @keyframes flip {
@@ -94,5 +84,14 @@ body {
 	}
 	100% {
 		transform: translate(0, 0);
+	}
+}
+
+@keyframes fade {
+	0% {
+		color: transparent;
+	}
+	100% {
+		color: inherit;
 	}
 }
