@@ -8,9 +8,9 @@ body {
 	height: 100dvh;
 	background-color: #ccd5ae;
 	padding: 1vh;
+	display: flex;
 	align-items: center;
 	justify-content: center;
-	display: flex;
 }
 
 #grid {
@@ -18,47 +18,38 @@ body {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	grid-template-rows: repeat(4, 1fr);
-}
-
-.card-outer {
-	width: 2em;
-	height: 2em;
-	margin: 3vh;
-	background: radial-gradient(circle, #fefae0 0%, #e9edc9 100%);
-	border: 1px solid #d6ff9f;
-	border-radius: 0.3em;
-	box-shadow: 3px 3px 0 0 #6b705c;
-	transition: box-shadow 0.3s, transform 0.6s;
+	perspective: 1000px;
 }
 
 .card {
-	width: 100%;
-	height: 100%;
+	width: 4em;
+	height: 4em;
+	margin: 3vh;
+	color: transparent;
+	font-size: xx-large;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	animation-duration: 0.4s; /*see*/
-	animation-direction: normal;
+	background: radial-gradient(circle, #fefae0 0%, #e9edc9 100%);
+	border: 1px solid #d6ff9f;
+	border-radius: 0.6em;
+	box-shadow: 3px 3px 0 0 #6b705c;
+	transition: box-shadow 0.3s, transform 0.6s, color 0.5s;
 }
 
 .card:hover {
-	box-shadow: 5px 6px 0 0 #6b705c;
-	transform: translate(-2px, -3px);
-}
-
-.card-inner {
-	font-size: 3em;
-	transform: translateY(180deg);
+	box-shadow: 5px 5px 0 0 #6b705c;
+	transform: translate(-3px, -3px);
 }
 
 @keyframes flip {
 	0% {
-		font-size: 0;
-		transform: rotateY(0deg);
+		transform: translate(-3px, -3px) rotateY(0deg);
+		box-shadow: 5px 5px 0 0 #6b705c;
 	}
 	100% {
-		font-size: 3em;
-		transform: rotateY(180deg);
+		transform: translate(-3px, -3px) rotateY(180deg);
+		box-shadow: -5px 5px 0 0 #6b705c;
 	}
 }
 
@@ -86,14 +77,5 @@ body {
 	}
 	100% {
 		transform: translate(0, 0);
-	}
-}
-
-@keyframes fade {
-	0% {
-		color: transparent;
-	}
-	100% {
-		color: inherit;
 	}
 }
