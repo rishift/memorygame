@@ -7,25 +7,22 @@
 
 body {
 	height: 100dvh;
+	width: 100dvw;
 	background-color: #ccd5ae;
-	padding: 1vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
 #grid {
-	max-width: 70%;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	grid-template-rows: repeat(4, 1fr);
+	place-items: center;
 	perspective: 1000px;
 }
 
 .card {
-	width: 4em;
-	height: 4em;
-	margin: 3vh;
 	color: transparent;
 	font-size: xx-large;
 	display: flex;
@@ -43,7 +40,6 @@ body {
 	transform: translate(-3px, -3px);
 }
 
-
 @keyframes sink {
 	0% {
 		transform: scale(100%);
@@ -56,5 +52,31 @@ body {
 	100% {
 		transform: scale(0);
 		opacity: 0;
+	}
+}
+
+@media only screen and (orientation: landscape) {
+	#grid {
+		height: 90dvh;
+		width: 90dvh;
+	}
+	.card {
+		width: 17dvh;
+		height: 17dvh;
+		font-size: 6dvh;
+		border-radius: 3dvh;
+	}
+}
+
+@media only screen and (orientation: portrait) {
+	#grid {
+		height: 90dvw;
+		width: 90dvw;
+	}
+	.card {
+		width: 17dvw;
+		height: 17dvw;
+		font-size: 6dvw;
+		border-radius: 3dvw;
 	}
 }
