@@ -1,5 +1,9 @@
 const grid = document.getElementById("grid");
 
+const matchSound = new Audio("match.mp3");
+const mismatchSound = new Audio("mismatch.mp3");
+mismatchSound.volume = 0.2;
+
 const cards = [];
 
 const flip = [
@@ -26,17 +30,16 @@ const shakeOptions = { duration: 100, iterations: 2, delay: 500 };
 let selected1 = null;
 let selected2 = null;
 
-
 let faces = shuffle(["😊", "😂", "😎", "😁", "🤑", "🤩", "😤", "😑", "😣", "🤬", "😵", "🥸", "🤓", "🙄", "🤗", "😵", "😇", "😍", "😮"]).slice(0, 8);
 faces = faces.concat(faces);
 
 for (let i = 0; i < 16; ++i) {
 	let c = faces[Math.floor(Math.random() * faces.length)];
-	genCard(c);
+	generateCards(c);
 	removeFromArray(c, faces);
 }
 
-function genCard(t) {
+function generateCards(t) {
 	let card = document.createElement("div");
 	card.classList.add("card");
 	card.textContent = t;
@@ -46,6 +49,7 @@ function genCard(t) {
 }
 
 function handleClick(e) {
+	arm(false);
 	setTimeout(() => {
 		e.target.style.color = "inherit";
 	}, 400);
@@ -57,16 +61,23 @@ function handleClick(e) {
 
 	if (selected1 && selected2) {
 		if (selected1.textContent == selected2.textContent) {
-			console.log("mathced");
 			removeFromArray(selected1, cards);
 			removeFromArray(selected2, cards);
+			setTimeout(() => {
+				matchSound.play();
+				selected1.style.animation = selected2.style.animation = "1s sink 0.7s forwards";
+			}, 150);
 		} else {
 			selected1.animate(shake, shakeOptions);
 			selected2.animate(shake, shakeOptions);
 
 			setTimeout(() => {
-				selected1.style.color = selected2.style.color = "transparent";
-			}, 1500);
+				mismatchSound.play();
+				setTimeout(() => {
+					selected1.style.color = selected2.style.color = "transparent";
+				}, 1300);
+			}, 200);
+
 			selected1.animate(flip, flipCloseOpts);
 			selected2.animate(flip, flipCloseOpts);
 		}
@@ -74,6 +85,7 @@ function handleClick(e) {
 		setTimeout(() => {
 			selected1.onclick = selected2.onclick = handleClick;
 			selected1 = selected2 = null;
+			arm(true);
 		}, 2000);
 
 		if (cards.length == 0)
@@ -83,9 +95,18 @@ function handleClick(e) {
 						title: "Yayy",
 						text: "You've won!!",
 					}),
-				2500
+				2000
 			);
-	}
+	} else if (selected1 && !selected2)
+		setTimeout(() => {
+			arm(true);
+		}, 600);
+}
+
+function arm(k) {
+	cards.forEach((card) => {
+		card.onclick = k ? handleClick : null;
+	});
 }
 
 function removeFromArray(e, arr) {

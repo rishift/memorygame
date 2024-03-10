@@ -2,6 +2,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	user-select: none;
 }
 
 body {
@@ -42,40 +43,18 @@ body {
 	transform: translate(-3px, -3px);
 }
 
-@keyframes flip {
-	0% {
-		transform: translate(-3px, -3px) rotateY(0deg);
-		box-shadow: 5px 5px 0 0 #6b705c;
-	}
-	100% {
-		transform: translate(-3px, -3px) rotateY(180deg);
-		box-shadow: -5px 5px 0 0 #6b705c;
-	}
-}
 
-@keyframes shake {
+@keyframes sink {
 	0% {
-		transform: translate(0, 0);
+		transform: scale(100%);
+		opacity: 1;
 	}
 	10% {
-		transform: translate(3px, 3px);
-	}
-	20% {
-		transform: translate(-3px, 0);
-	}
-	30% {
-		transform: translate(0, 3px);
-	}
-	50% {
-		transform: translate(3px, 3px);
-	}
-	70% {
-		transform: translate(-3px, -3px);
-	}
-	90% {
-		transform: translate(0, 3px);
+		transform: scale(110%);
+		opacity: 1;
 	}
 	100% {
-		transform: translate(0, 0);
+		transform: scale(0);
+		opacity: 0;
 	}
 }
